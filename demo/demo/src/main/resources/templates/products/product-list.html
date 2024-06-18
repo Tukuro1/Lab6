@@ -78,6 +78,7 @@ không?')">Xóa</a>
  <td>${product.name}</td>
  <td>${product.price}</td>
 <td>${product.description}</td>
+<td th:text="${product.category.name}"></td>
 <td>
  <button
 onclick="editProduct(${product.id})" class="btn btn-warning">Edit</button>

@@ -35,7 +35,7 @@ public class UserController {
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .toArray(String[]::new);
             model.addAttribute("errors", errors);
-            return "users/register"; // Trả về lại view "register" nếu có lỗi
+            return "user/register"; // Trả về lại view "register" nếu có lỗi
         }
         userService.save(user);
         return "redirect:/login";
