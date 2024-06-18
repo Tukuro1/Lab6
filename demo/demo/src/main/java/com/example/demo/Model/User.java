@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
@@ -32,6 +34,9 @@ public class User implements UserDetails {
             @Column(name = "password", length = 250)
             @NotBlank(message = "Password is required")
             private String password;
+            @Transient
+            @NotBlank(message = "Confirm password is required")
+            private String confirmPassword;
             @Column(name = "email", length = 50, unique = true)
             @NotBlank(message = "Email is required")
             @Size(min = 1, max = 50, message = "Email must be between 1 and 50 characters")
@@ -43,6 +48,11 @@ public class User implements UserDetails {
     private String phone;
     @Column(name = "provider", length = 50)
     private String provider;
+    @Column(name = "address", length = 250)
+    private String address;
+
+    @Column(name = "birthdate")
+    private LocalDate birthdate;
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
